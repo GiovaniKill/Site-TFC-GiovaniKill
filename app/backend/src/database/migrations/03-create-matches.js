@@ -13,6 +13,8 @@ module.exports = {
             model: 'teams',
             key: 'id'
           },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
           field: 'home_team'
         },
         homeTeamGoals: {
@@ -27,6 +29,8 @@ module.exports = {
             model: 'teams',
             key: 'id'
           },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
           field: 'away_team'
         },
         awayTeamGoals: {

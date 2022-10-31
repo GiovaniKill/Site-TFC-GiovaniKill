@@ -1,4 +1,7 @@
 import * as express from 'express';
+import 'express-async-errors';
+import errorHandler from './middlewares/errorHandler';
+import routes from './routes';
 
 class App {
   public app: express.Express;
@@ -10,6 +13,8 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    routes(this.app);
+    this.app.use(errorHandler);
   }
 
   private config():void {
