@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import UserService from '../service/UserService';
+import UsersService from '../service/UsersService';
 import UsersController from '../controller/UsersController';
 import SequelizeUsers from '../repositories/Users.sequelize.repository';
 
-const userRouter = Router();
+const usersRouter = Router();
 const repository = new SequelizeUsers();
-const service = new UserService(repository);
+const service = new UsersService(repository);
 const controller = new UsersController(service);
 
-userRouter.post('/', controller.login);
-userRouter.get('/validate', controller.validate);
+usersRouter.post('/', controller.login);
+usersRouter.get('/validate', controller.validate);
 
-export default userRouter;
+export default usersRouter;

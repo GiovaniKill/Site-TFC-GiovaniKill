@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import HTTPError from '../utils/HTTPError';
-import UserService from '../service/UserService';
+import UsersService from '../service/UsersService';
 
 export default class UsersController {
-  private service: UserService;
+  private service: UsersService;
 
-  constructor(service: UserService) {
+  constructor(service: UsersService) {
     this.service = service;
   }
 

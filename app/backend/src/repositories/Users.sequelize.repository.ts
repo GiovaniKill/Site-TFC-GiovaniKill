@@ -1,6 +1,6 @@
 import IUser from '../entities/IUser';
 import UsersModel from '../database/models/UsersModel';
-import IUserRepository from './IUser.repository';
+import IUserRepository from './IUsers.repository';
 
 export default class SequelizeUsers implements IUserRepository {
   private model = UsersModel;

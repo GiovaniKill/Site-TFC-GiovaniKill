@@ -1,6 +1,8 @@
 import { Application } from 'express';
-import userRouter from './user.routes';
+import teamsRouter from './teams.routes';
+import usersRouter from './users.routes';
 
 export default (app: Application) => {
-  app.use('/login', userRouter);
+  app.use('/login', usersRouter);
+  app.use('/teams', teamsRouter);
 };
