@@ -1,11 +1,11 @@
 import HTTPError from '../utils/HTTPError';
-import ITeamRepository from '../repositories/ITeams.repository';
+import ITeamsRepository from '../repositories/ITeams.repository';
 import Iteam from '../entities/ITeam';
 
 export default class TeamService {
-  repository: ITeamRepository;
+  private repository: ITeamsRepository;
 
-  constructor(repository: ITeamRepository) {
+  constructor(repository: ITeamsRepository) {
     this.repository = repository;
   }
 
@@ -13,7 +13,7 @@ export default class TeamService {
 
   findById = async (id: number): Promise<Iteam> => {
     const team = await this.repository.findById(id);
-    if (!team) throw new HTTPError(401, 'Team does not exist');
+    if (!team) throw new HTTPError(404, 'Team does not exist');
     return team;
   };
 }

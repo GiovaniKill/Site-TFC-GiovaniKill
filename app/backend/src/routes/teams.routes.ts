@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import TeamService from '../service/TeamsService';
 import TeamsController from '../controller/TeamsController';
-import SequelizeTeams from '../repositories/Teams.sequelize';
+import SequelizeTeams from '../repositories/Teams.sequelize.repository';
 
 const teamsRouter = Router();
 const sequelizeTeams = new SequelizeTeams();

@@ -1,8 +1,8 @@
 import IUser from '../entities/IUser';
 import UsersModel from '../database/models/UsersModel';
-import IUserRepository from './IUsers.repository';
+import IUsersRepository from './IUsers.repository';
 
-export default class SequelizeUsers implements IUserRepository {
+export default class SequelizeUsers implements IUsersRepository {
   private model = UsersModel;
 
   findByEmail = async (email: string): Promise<IUser | null> => {

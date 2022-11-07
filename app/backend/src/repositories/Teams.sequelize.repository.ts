@@ -1,8 +1,8 @@
 import ITeam from '../entities/ITeam';
 import TeamsModel from '../database/models/TeamsModel';
-import ITeamRepository from './ITeams.repository';
+import ITeamsRepository from './ITeams.repository';
 
-export default class SequelizeTeams implements ITeamRepository {
+export default class SequelizeTeams implements ITeamsRepository {
   model = TeamsModel;
 
   getAll = async (): Promise<ITeam[]> => this.model.findAll();

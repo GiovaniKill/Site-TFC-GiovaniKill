@@ -2,14 +2,14 @@ import { compareSync } from 'bcryptjs';
 import ITokenPayload from '../entities/ITokenPayload';
 import TokenManager from '../utils/TokenManager';
 import HTTPError from '../utils/HTTPError';
-import IUserRepository from '../repositories/IUsers.repository';
+import IUsersRepository from '../repositories/IUsers.repository';
 
 // O Service não acessa diretamente o Model, ele faz isso através do repository, para deixar mais prática uma eventual mudança de ORM
 
 export default class UserService {
-  private repository: IUserRepository;
+  private repository: IUsersRepository;
 
-  constructor(repository: IUserRepository) {
+  constructor(repository: IUsersRepository) {
     this.repository = repository;
   }
 
