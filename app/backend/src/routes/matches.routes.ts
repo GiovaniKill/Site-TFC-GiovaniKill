@@ -4,8 +4,8 @@ import MatchesController from '../controller/MatchesController';
 import SequelizeMatches from '../repositories/Matches.sequelize.repository';
 import tokenVerification from '../middlewares/tokenVerification';
 
-const matchesModel = new SequelizeMatches();
-const matchesService = new MatchesService(matchesModel);
+const matchesRepository = new SequelizeMatches();
+const matchesService = new MatchesService(matchesRepository);
 const matchesController = new MatchesController(matchesService);
 
 const matchesRouter = Router();

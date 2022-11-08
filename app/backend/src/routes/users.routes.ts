@@ -4,8 +4,8 @@ import UsersController from '../controller/UsersController';
 import SequelizeUsers from '../repositories/Users.sequelize.repository';
 
 const usersRouter = Router();
-const repository = new SequelizeUsers();
-const service = new UsersService(repository);
+const usersRepository = new SequelizeUsers();
+const service = new UsersService(usersRepository);
 const controller = new UsersController(service);
 
 usersRouter.post('/', controller.login);

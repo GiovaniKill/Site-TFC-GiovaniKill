@@ -14,33 +14,25 @@ export default class SequelizeMatches implements IMatchesRepository {
     const teams = await this.model.findAll({ include: [
       { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
       { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
-    ] });
-    return teams;
+    ] }) as unknown;
+    return teams as IMatch[];
   };
 
-  findByProgress = async (inProgress: boolean): Promise<IMatch[] | null> => {
+  findByProgress = async (inProgress: boolean): Promise<IMatch[]> => {
     const teams = await this.model.findAll({
       where: { inProgress },
       include: [
         { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
         { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
-    });
-    if (!teams) return null;
-    return teams;
+    }) as unknown;
+    return teams as IMatch[];
   };
 
   create = async (newMatch: ICreateMatchBody): Promise<IMatch | void> => {
     try {
-      const sequelizeMatch = await this.model.create({ ...newMatch, inProgress: true });
-      const match: IMatch = {
-        id: sequelizeMatch.id,
-        homeTeam: sequelizeMatch.homeTeam,
-        homeTeamGoals: sequelizeMatch.homeTeamGoals,
-        awayTeam: sequelizeMatch.awayTeam,
-        awayTeamGoals: sequelizeMatch.awayTeamGoals,
-        inProgress: true,
-      };
+      const sequelizeMatch = await this.model.create({ ...newMatch, inProgress: true }) as unknown;
+      const match: IMatch = sequelizeMatch as IMatch;
       return match;
     } catch (error) {
       if (error instanceof Error && error.name === 'SequelizeForeignKeyConstraintError') {
