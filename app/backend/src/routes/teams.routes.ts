@@ -8,7 +8,7 @@ const teamsRepository = new SequelizeTeams();
 const teamsService = new TeamService(teamsRepository);
 const teamsController = new TeamsController(teamsService);
 
-teamsRouter.get('/', teamsController.getAll);
-teamsRouter.get('/:id', teamsController.findById);
+teamsRouter.get('/', (req, res) => teamsController.getAll(req, res));
+teamsRouter.get('/:id', (req, res) => teamsController.findById(req, res));
 
 export default teamsRouter;

@@ -13,16 +13,16 @@ export default class UserService {
     this.repository = repository;
   }
 
-  login = async (email: string, password: string): Promise<string> => {
+  async login(email: string, password: string): Promise<string> {
     const user = await this.repository.findByEmail(email);
     if (!user) throw new HTTPError(401, 'Incorrect email or password');
     const isPasswordValid = compareSync(password, user.password);
     if (!isPasswordValid) throw new HTTPError(401, 'Incorrect email or password');
     return TokenManager.create({ email: user.email, role: user.role });
-  };
+  }
 
-  validate = (token: string) => {
+  static validate(token: string) {
     const { data: { role } } = TokenManager.validate(token) as ITokenPayload;
     return role;
-  };
+  }
 }

@@ -8,7 +8,7 @@ const usersRepository = new SequelizeUsers();
 const service = new UsersService(usersRepository);
 const controller = new UsersController(service);
 
-usersRouter.post('/', controller.login);
-usersRouter.get('/validate', controller.validate);
+usersRouter.post('/', (req, res) => controller.login(req, res));
+usersRouter.get('/validate', (req, res) => UsersController.validate(req, res));
 
 export default usersRouter;

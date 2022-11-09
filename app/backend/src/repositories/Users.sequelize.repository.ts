@@ -5,7 +5,7 @@ import IUsersRepository from './IUsers.repository';
 export default class SequelizeUsers implements IUsersRepository {
   private model = UsersModel;
 
-  findByEmail = async (email: string): Promise<IUser | null> => {
+  async findByEmail(email: string): Promise<IUser | null> {
     const sequelizeUser = await this.model.findOne({ where: { email } });
 
     if (!sequelizeUser) return null;
@@ -19,5 +19,5 @@ export default class SequelizeUsers implements IUsersRepository {
     };
 
     return user;
-  };
+  }
 }

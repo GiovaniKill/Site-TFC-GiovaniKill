@@ -9,15 +9,15 @@ export default class TeamsController {
     this.service = service;
   }
 
-  getAll = async (_req: Request, res: Response): Promise<void> => {
+  async getAll(_req: Request, res: Response): Promise<void> {
     const teams = await this.service.getAll();
     res.status(200).json(teams);
-  };
+  }
 
-  findById = async (req: Request, res: Response): Promise<void> => {
+  async findById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     if (!id) throw new HTTPError(400, 'Invalid id');
     const team = await this.service.findById(+id);
     res.status(200).json(team);
-  };
+  }
 }

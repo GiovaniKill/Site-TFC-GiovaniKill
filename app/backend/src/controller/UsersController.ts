@@ -9,17 +9,17 @@ export default class UsersController {
     this.service = service;
   }
 
-  login = async (req: Request, res: Response) => {
+  async login(req: Request, res: Response) {
     const { email, password } = req.body;
     if (!email || !password) throw new HTTPError(400, 'All fields must be filled');
     const token = await this.service.login(email, password);
     res.status(200).json({ token });
-  };
+  }
 
-  validate = (req: Request, res: Response) => {
+  static validate(req: Request, res: Response) {
     const { authorization } = req.headers;
     if (!authorization) throw new HTTPError(400, 'Invalid token');
-    const role = this.service.validate(authorization);
+    const role = UsersService.validate(authorization);
     res.status(200).json({ role });
-  };
+  }
 }

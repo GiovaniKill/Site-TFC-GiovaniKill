@@ -10,15 +10,15 @@ import IUpdateMatchBody from '../entities/IUpdateMatchBody';
 export default class SequelizeMatches implements IMatchesRepository {
   model = MatchesModel;
 
-  getAll = async (): Promise<IMatch[]> => {
+  async getAll(): Promise<IMatch[]> {
     const teams = await this.model.findAll({ include: [
       { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
       { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
     ] }) as unknown;
     return teams as IMatch[];
-  };
+  }
 
-  findByProgress = async (inProgress: boolean): Promise<IMatch[]> => {
+  async findByProgress(inProgress: boolean): Promise<IMatch[]> {
     const teams = await this.model.findAll({
       where: { inProgress },
       include: [
@@ -27,9 +27,9 @@ export default class SequelizeMatches implements IMatchesRepository {
       ],
     }) as unknown;
     return teams as IMatch[];
-  };
+  }
 
-  create = async (newMatch: ICreateMatchBody): Promise<IMatch | void> => {
+  async create(newMatch: ICreateMatchBody): Promise<IMatch | void> {
     try {
       const sequelizeMatch = await this.model.create({ ...newMatch, inProgress: true }) as unknown;
       const match: IMatch = sequelizeMatch as IMatch;
@@ -39,13 +39,13 @@ export default class SequelizeMatches implements IMatchesRepository {
         throw new HTTPError(404, 'There is no team with such id!');
       }
     }
-  };
+  }
 
-  finishMatch = async (id: number): Promise<void> => {
+  async finishMatch(id: number): Promise<void> {
     await this.model.update({ inProgress: false }, { where: { id } });
-  };
+  }
 
-  update = async (id: number, score: IUpdateMatchBody): Promise<void> => {
+  async update(id: number, score: IUpdateMatchBody): Promise<void> {
     await this.model.update({ ...score }, { where: { id } });
-  };
+  }
 }

@@ -10,9 +10,9 @@ const matchesController = new MatchesController(matchesService);
 
 const matchesRouter = Router();
 
-matchesRouter.get('/', matchesController.isFiltering);
-matchesRouter.post('/', tokenVerification, matchesController.create);
-matchesRouter.patch('/:id/finish', matchesController.finishMatch);
-matchesRouter.patch('/:id', matchesController.update);
+matchesRouter.get('/', (req, res) => matchesController.isFiltering(req, res));
+matchesRouter.post('/', tokenVerification, (req, res) => matchesController.create(req, res));
+matchesRouter.patch('/:id/finish', (req, res) => matchesController.finishMatch(req, res));
+matchesRouter.patch('/:id', (req, res) => matchesController.update(req, res));
 
 export default matchesRouter;

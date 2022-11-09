@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express = require('express');
 import 'express-async-errors';
 import errorHandler from './middlewares/errorHandler';
 import routes from './routes';
