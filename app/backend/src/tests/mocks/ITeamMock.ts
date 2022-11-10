@@ -1,6 +1,11 @@
-const ITeamArray = {
-    id: 5,
-    teamName: 'Curintia'
+const ITeamMockCor = {
+    id: 22,
+    teamName: 'Corinthians'
 };
 
-export default ITeamArray;
+const ITeamMockFla = {
+    id: 13,
+    teamName: 'Flamengo'
+};
+
+export default {ITeamMockFla, ITeamMockCor};

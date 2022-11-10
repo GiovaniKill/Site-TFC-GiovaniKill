@@ -19,7 +19,7 @@ const { expect } = chai;
 
 describe('Rota /teams', () => {
     beforeEach(()=>{
-        sinon.stub(SequelizeTeams.prototype, 'getAll').resolves([mocks.ITeamMock] as Iteam[]);
+        sinon.stub(SequelizeTeams.prototype, 'getAll').resolves([mocks.ITeamMock.ITeamMockCor, mocks.ITeamMock.ITeamMockFla] as Iteam[]);
     })
 
   afterEach(()=>{
@@ -28,6 +28,6 @@ describe('Rota /teams', () => {
 
   it('Retorna o array de times corretamente', async () => {
     const response = await chai.request(app).get('/teams');
-    expect(response.body).to.deep.equal([mocks.ITeamMock]);
+    expect(response.body).to.deep.equal([mocks.ITeamMock.ITeamMockCor, mocks.ITeamMock.ITeamMockFla]);
   });
 });
