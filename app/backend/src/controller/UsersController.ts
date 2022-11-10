@@ -11,7 +11,7 @@ export default class UsersController {
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
-    if (!email || !password) throw new HTTPError(401, 'All fields must be filled');
+    if (!email || !password) throw new HTTPError(400, 'All fields must be filled');
     const token = await this.service.login(email, password);
     res.status(200).json({ token });
   }
