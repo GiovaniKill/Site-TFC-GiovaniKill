@@ -18,15 +18,13 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Rota /teams', () => {
-    beforeEach(()=>{
-        sinon.stub(SequelizeTeams.prototype, 'getAll').resolves([mocks.ITeamMock.ITeamMockCor, mocks.ITeamMock.ITeamMockFla] as Iteam[]);
-    })
-
   afterEach(()=>{
     sinon.restore();
   })
 
   it('Retorna o array de times corretamente', async () => {
+    sinon.stub(SequelizeTeams.prototype, 'getAll')
+    .resolves([mocks.ITeamMock.ITeamMockCor, mocks.ITeamMock.ITeamMockFla] as Iteam[]);
     const response = await chai.request(app).get('/teams');
     expect(response.body).to.deep.equal([mocks.ITeamMock.ITeamMockCor, mocks.ITeamMock.ITeamMockFla]);
   });

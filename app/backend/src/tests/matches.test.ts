@@ -7,6 +7,8 @@ import { app } from '../app';
 
 import SequelizeMatches from '../repositories/Matches.sequelize.repository';
 
+import * as jwt from 'jsonwebtoken';
+
 import mocks from './mocks';
 
 import { Response } from 'superagent';
@@ -31,4 +33,26 @@ describe('Rota /matches', () => {
     const response = await chai.request(app).post('/matches').send(mocks.ICreateMatchBody);
     expect(response.body).to.deep.equal({message: 'Token must be a valid token'});
   });
+
+  it('Permite criar uma partida', async () => {
+    sinon.stub(SequelizeMatches.prototype, 'create').resolves(mocks.IMatchMock);
+    sinon.stub(jwt, 'verify').resolves(mocks.IUserMock);
+    const response = await chai.request(app).post('/matches')
+    .set('Authorization', 'mock')
+    .send(mocks.ICreateMatchBody);
+    expect(response.body).to.deep.equal(mocks.IMatchMock);
+  });
+
+  it('Permite finalizar uma partida', async () => {
+    sinon.stub(SequelizeMatches.prototype, 'finishMatch').resolves();
+    const response = await chai.request(app).patch('/matches/1/finish');
+    expect(response.body).to.deep.equal({message: 'Finished'});
+  });
+
+  it('Permite atualizar uma partida', async () => {
+    sinon.stub(SequelizeMatches.prototype, 'update').resolves();
+    const response = await chai.request(app).patch('/matches/1');
+    expect(response.body).to.deep.equal({message: 'Updated succesfully'});
+  });
+
 });
