@@ -1,13 +1,31 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# ⚽ Trybe Futebol Clube  
+  O Site Trybe Futebol Clube tem o objetivo de disponibilizar uma visualização sobre um campeonato de futebol. O front-end foi criado pela equipe da Trybe, enquanto o back-end foi criado e implementado por mim, Giovani Kill.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+# Saiba as classificações
+![](https://github.com/GiovaniKill/Site-TFC-GiovaniKill/blob/main/homeTFC.gif)
+  Todas os cálculos de classificação e ranqueamento são feitos automaticamente pelo back-end
+  
+# Faça o login
+![](https://github.com/GiovaniKill/Site-TFC-GiovaniKill/blob/main/loginTFC.gif)
+  Senhas são tranformadas em SHA-256 para maior segurança nos servidores
+  
+# Edite e adicione partidas
+![](https://github.com/GiovaniKill/Site-TFC-GiovaniKill/blob/main/partidasTFC.gif)
+  Após se autenticar, configure o campeonato conforme necessário
+  
+  Além disso, as funções do back-end são testadas 📋
+  
+# Tecnologias utilizadas
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+• JavaScript
+• TypeScript
+• MySQL
+• mysql2
+• Docker
+• Express
+• Sequelize
+• Mocha
+• Sinon
+• Chai
+• NodeJS
+• JsonWebToken
